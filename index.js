@@ -22,7 +22,8 @@ function isPasswordValid(passwrod) {
 
 // url validation
 function isURLValid(url) {
-  const URL_FORMAT = /^((http(s?)?):\/\/)?([wW]{3}\.)?[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/g;
+  const URL_FORMAT =
+    /^((http(s?)?):\/\/)?([wW]{3}\.)?[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/g;
   return url.match(URL_FORMAT);
 }
 
@@ -72,14 +73,22 @@ function checkForm() {
   if (isURLValid(url)) {
     log('bro you need correct url');
   }
+
+  // message
+  const message = el('#message').value.length;
+  if (message < 20) {
+    log('bro message need to be over than 20 letters.');
+  }
 }
 
 // form
-const userForm = el('#user-form');
-userForm.onSubmit = (e) => {
-  e.preverntDefault();
+const btn = el('#user-form button');
+btn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  log(e);
 
   checkForm();
 
   console.log('form is submitted');
-};
+});
