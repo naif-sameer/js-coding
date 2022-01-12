@@ -68,7 +68,7 @@ function checkForm() {
 
   // confirm pass
   const confirmPassword = el('#confirm-password').value;
-  if (!isPasswordValid(confirmPassword)) {
+  if (confirmPassword !== password) {
     log('.confirm-password-err', 'confirm pass must as same as password');
   }
 
