@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript validation</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body.dark {
+        color: white;
+        background-color: rgb(39, 39, 39);
+      }
+
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      form div {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The Site is now in <span id="mode-title">Light</span></h1>
+
+    <form id="user-form">
+      <div>
+        <label for="username"> User name: </label>
+        <input type="text" id="username" />
+      </div>
+
+      <div>
+        <label for="emial"> Email: </label>
+        <input type="text" id="emial" />
+      </div>
+
+      <div>
+        <label for="password"> Password: </label>
+        <input type="password" id="password" />
+      </div>
+
+      <div>
+        <label for="confirm-password"> Confirm Password: </label>
+        <input type="password" id="confirm-password" />
+      </div>
+      <div>
+        <label for="age"> Age: </label>
+        <input type="text" id="age" />
+      </div>
+
+      <div>
+        <label for="phone"> Phone: </label>
+        <input type="text" id="phone" />
+      </div>
+
+      <div>
+        <label for="url"> URL: </label>
+        <input type="text" id="url" />
+      </div>
+
+      <div>
+        <label for="message"> Message: </label>
+        <textarea cols="20" rows="30" id="message"></textarea>
+      </div>
+
+      <div>
+        <button type="submit">send</button>
+      </div>
+    </form>
+
+    <script src="index.js"></script>
+  </body>
+</html>
