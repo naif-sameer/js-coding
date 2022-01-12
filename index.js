@@ -21,11 +21,9 @@ function isPasswordValid(passwrod) {
 }
 
 // url validation
-function isURLValid(passwrod) {
-  // only god know what this line mean LOL.
-  const PASSWORD_FORMAT = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]$/;
-
-  return passwrod.match(PASSWORD_FORMAT);
+function isURLValid(url) {
+  const URL_FORMAT = /^((http(s?)?):\/\/)?([wW]{3}\.)?[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/g;
+  return url.match(URL_FORMAT);
 }
 
 function checkForm() {
@@ -71,8 +69,8 @@ function checkForm() {
 
   // url
   const url = el('#url').value;
-  if (url < 18) {
-    log('bro you need to be over than 18 years old');
+  if (isURLValid(url)) {
+    log('bro you need correct url');
   }
 }
 
