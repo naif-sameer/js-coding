@@ -34,8 +34,8 @@
         margin: 0 auto;
       }
 
-      form input {
-        padding: .5rem 1rem;
+      form input, textarea {
+        padding: 0.5rem 1rem;
       }
 
       form div {
@@ -45,7 +45,7 @@
       }
 
       form button {
-        padding: 1rem 2rem; 
+        padding: 1rem 2rem;
       }
 
       .mode-controller button {
@@ -62,6 +62,10 @@
       .dark .mode-controller button {
         background: white;
         color: #222;
+      }
+
+      .input-err {
+        color: red;
       }
     </style>
   </head>
@@ -82,40 +86,48 @@
       <div>
         <label for="username"> User name: </label>
         <input type="text" id="username" />
+        <span class="username-err input-err"></span>
       </div>
 
       <div>
         <label for="email"> Email: </label>
         <input type="text" id="email" />
+        <span class="email-err input-err"></span>
       </div>
 
       <div>
         <label for="password"> Password: </label>
         <input type="password" id="password" />
+        <span class="password-err input-err"></span>
       </div>
 
       <div>
         <label for="confirm-password"> Confirm Password: </label>
         <input type="password" id="confirm-password" />
+        <span class="confirm-password-err input-err"></span>
       </div>
       <div>
         <label for="age"> Age: </label>
         <input type="text" id="age" />
+        <span class="age-err input-err"></span>
       </div>
 
       <div>
         <label for="phone"> Phone: </label>
         <input type="text" id="phone" />
+        <span class="phone-err input-err"></span>
       </div>
 
       <div>
         <label for="url"> URL: </label>
         <input type="text" id="url" />
+        <span class="url-err input-err"></span>
       </div>
 
       <div>
         <label for="message"> Message: </label>
         <textarea rows="10" id="message"></textarea>
+        <span class="message-err input-err"></span>
       </div>
 
       <div>

@@ -2,12 +2,22 @@
 // function to get the element
 const el = (element) => document.querySelector(element);
 
-// log function
-const log = (param) => console.log(param);
+/** log function used for print the error message
+ * @param element
+ * @param err
+ */
+const log = (element, err) => {
+  // console.log(element);
+
+  // add the message to the dom
+  el(element).textContent = err;
+
+  console.log(err);
+};
 
 // email validation
 function isEmailValid(email) {
-  const MAIL_FORMAT = /^w+[.-]*@w+([.-]?w+)*(.w{2,3})+$/;
+  const MAIL_FORMAT = /\S+@\S+\.\S+/;
 
   return email.match(MAIL_FORMAT);
 }
@@ -15,55 +25,72 @@ function isEmailValid(email) {
 // passwrod validation
 function isPasswordValid(passwrod) {
   // only god know what this line mean LOL.
-  const PASSWORD_FORMAT = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]$/;
+  const PASSWORD_FORMAT =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
 
   return passwrod.match(PASSWORD_FORMAT);
 }
 
 // url validation
 function isURLValid(url) {
-  const URL_FORMAT =
-    /^((http(s?)?):\/\/)?([wW]{3}\.)?[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/g;
-  return url.match(URL_FORMAT);
+  // test the url if it is valid using js magick
+  try {
+    const testUrl = new URL(url);
+    return false;
+  } catch (err) {
+    return true;
+  }
 }
 
 function checkForm() {
   // name length
   const nameLen = el('#username').value.length;
   if (nameLen < 3) {
-    log('name must be upper than three letters');
+    log('.username-err', 'name must be upper than three letters');
   } else if (nameLen >= 10) {
-    log('name must be lower than ten letters');
+    log('.username-err', 'name must be lower than ten letters');
   }
 
   // email
   const email = el('#email').value;
   if (!isEmailValid(email)) {
-    log('invalid email');
+    log('.email-err', 'invalid email');
   }
 
   // pass
   const password = el('#password').value;
-  if (!isPasswordValid(password) || password.length < 6) {
+  if (!isPasswordValid(password)) {
     log(
-      'password must contain an uppercase letter, symbol, lowecase, and number, as less 6 letter'
+      '.password-err',
+      'password must contain an uppercase letter, symbol, lowecase, and number, at less 6 letter'
     );
+  }
+
+  // confirm pass
+  const confirmPassword = el('#confirm-password').value;
+  if (!isPasswordValid(confirmPassword)) {
+    log('.confirm-password-err', 'confirm pass must as same as password');
   }
 
   // age
   const age = el('#age').value;
-  if (age < 18) {
-    log('bro you need to be over than 18 years old');
+  // check if the age not a valid number.
+  if (isNaN(age)) {
+    log('.age-err', 'bro enter correct age');
+  }
+  // age must be over 18
+  if (Number(age) < 18) {
+    log('.age-err', 'bro you need to be over than 18 years old');
   }
 
   // phone
   const phone = el('#phone').value;
   if (phone.length !== 9) {
-    log('phone number must be 9 numbers ');
+    log('.phone-err', 'phone number must be 9 numbers ');
   }
   for (let i = 0; i < 3; i += 1) {
     if (Number(phone[i]) !== 7) {
-      console.log('phone number must start with 777');
+      log('.phone-err', 'phone number must start with 777');
       break;
     }
   }
@@ -71,13 +98,13 @@ function checkForm() {
   // url
   const url = el('#url').value;
   if (isURLValid(url)) {
-    log('bro you need correct url');
+    log('.url-err', 'bro you need correct url ex. https://geeksforgeeks.com');
   }
 
   // message
   const message = el('#message').value.length;
   if (message < 20) {
-    log('bro message need to be over than 20 letters.');
+    log('.message-err', 'bro message need to be over than 20 letters.');
   }
 }
 
@@ -86,7 +113,9 @@ const btn = el('#user-form button');
 btn.addEventListener('click', (e) => {
   e.preventDefault();
 
-  log(e);
+  document.querySelectorAll('.input-err').forEach((item) => {
+    item.textContent = '';
+  });
 
   checkForm();
 
