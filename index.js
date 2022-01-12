@@ -113,6 +113,7 @@ const btn = el('#user-form button');
 btn.addEventListener('click', (e) => {
   e.preventDefault();
 
+  // remove the previews err
   document.querySelectorAll('.input-err').forEach((item) => {
     item.textContent = '';
   });
@@ -121,3 +122,26 @@ btn.addEventListener('click', (e) => {
 
   console.log('form is submitted');
 });
+
+// dark mode controller
+const changeModeBtn = el('.mode-controller button');
+changeModeBtn.onclick = () => {
+  const bodyEl = document.body.classList;
+  let label = 'dark';
+
+  if (bodyEl.contains('dark')) {
+    // change from dark to light
+    bodyEl.remove('dark');
+    label = 'light';
+  } else {
+    // change from light to dark
+    bodyEl.add('dark');
+    label = 'dark';
+  }
+
+  // change the label text on the heading
+  el('.js-mode-label').textContent = label;
+  window.document.title = label;
+
+  console.log('chagne mode');
+};

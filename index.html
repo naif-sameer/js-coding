@@ -34,7 +34,8 @@
         margin: 0 auto;
       }
 
-      form input, textarea {
+      form input,
+      textarea {
         padding: 0.5rem 1rem;
       }
 
@@ -73,13 +74,9 @@
     <div class="mode-controller">
       <h1>
         The Site is now in
-        <span class="js-mode-title">Light</span>
+        <span class="js-mode-label">Light</span>
       </h1>
-      <button>
-        change to
-
-        <span class="js-mode-title">Light</span>
-      </button>
+      <button>change page theme mode</button>
     </div>
 
     <form id="user-form">
@@ -97,13 +94,13 @@
 
       <div>
         <label for="password"> Password: </label>
-        <input type="password" id="password" />
+        <input autocomplete type="password" id="password" />
         <span class="password-err input-err"></span>
       </div>
 
       <div>
         <label for="confirm-password"> Confirm Password: </label>
-        <input type="password" id="confirm-password" />
+        <input autocomplete type="password" id="confirm-password" />
         <span class="confirm-password-err input-err"></span>
       </div>
       <div>
